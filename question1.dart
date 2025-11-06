@@ -50,7 +50,7 @@ void main() {
   isStudent = true;
   
   // TODO: Calculate BMI and grade
-  double weight= 52.4
+  double weight= 52.4;
   double bmi = calculateBMI(weight, height); // Example: 150 lbs, 5.9 ft
   String grade = getGrade(92); // Example score
   
