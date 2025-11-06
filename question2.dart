@@ -38,11 +38,27 @@ void main() {
   double averageScore = 0.0;
   
   // TODO: Add your logic here
+  int totalScore=0;
+
+  for (String name in studentNames){
+    int score= studentScores[name]!;
+    totalScore +=score;
+
+    if (score>heighestScore){
+      heightScore=score;
+      heighestStudent=name;
+    }
+    if (score<lowestScore){
+      lowestScore=score;
+      lowestStudent=name;
+    }
+  }   
+  averageScore=totalScore/studentNames.length;
   
   print("Student Scores: $studentScores");
   print("Highest Score: $highestStudent with $highestScore");
   print("Lowest Score: $lowestStudent with $lowestScore");
-  print("Average Score: $averageScore");
+  print("Average Score: ${averageScore.toStringAsFixed(2)}");
   
   // 5. Use a switch statement to categorize students:
   //    - 90-100: "Excellent"
