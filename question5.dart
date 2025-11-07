@@ -1,34 +1,22 @@
 // Question 5: Advanced Features & Mixins (Difficulty: 5/5) ⭐⭐⭐⭐⭐
-// TODO: Complete the following requirements:
 
-// 1. Mixin Payable:
-//    - Method: double calculateSalary(double baseSalary, double bonus)
-//    - Method: void processPayment(double amount)
 mixin Payable {
   double calculateSalary(double baseSalary, double bonus) {
-    // TODO: Calculate total salary (base + bonus)
-    return 0.0; // Placeholder - replace with actual implementation
+    return baseSalary+bonus; 
   }
   
   void processPayment(double amount) {
-    // TODO: Process payment
-    // Add your implementation here
+    print("Processing payment of \$${amount.toStringAsFixed(2)}...");
+    print("Payment successful");
   }
 }
 
-// 2. Mixin Reportable:
-//    - Method: String generateReport(String employeeName, String department)
 mixin Reportable {
   String generateReport(String employeeName, String department) {
-    // TODO: Generate report
-    return ""; // Placeholder - replace with actual implementation
+        return "Monthly report for $employeeName in $department department";  
   }
 }
 
-// 3. Abstract Class Employee:
-//    - Properties: String name, String id, String department
-//    - Abstract method: String getJobTitle()
-//    - Abstract method: double getBaseSalary()
 abstract class Employee {
   String name;
   String id;
@@ -56,22 +44,17 @@ class Manager extends Employee with Payable, Reportable {
   Manager(String name, String id, String department, this.teamSize) : super(name, id, department);
   
   @override
-  String getJobTitle() {
-    // TODO: Return manager job title
-    return ""; // Placeholder - replace with actual implementation
-  }
-  
+  String getJobTitle() => "Manager" ;
+
   @override
-  double getBaseSalary() {
-    // TODO: Return manager base salary
-    return 0.0; // Placeholder - replace with actual implementation
-  }
+  double getBaseSalary()=> 8000.0; 
   
   @override
   void displayInfo() {
-    // TODO: Override to show manager-specific info
-    // Add your implementation here
-  }
+    print("\n Manager Information:");
+    super.displayInfo();
+    print("Team Size: $teamSize");
+    }
 }
 
 //    - Developer extends Employee with Payable
@@ -83,21 +66,16 @@ class Developer extends Employee with Payable {
   Developer(String name, String id, String department, this.programmingLanguage) : super(name, id, department);
   
   @override
-  String getJobTitle() {
-    // TODO: Return developer job title
-    return ""; // Placeholder - replace with actual implementation
-  }
+  String getJobTitle()=> "Senior Developer";
   
   @override
-  double getBaseSalary() {
-    // TODO: Return developer base salary
-    return 0.0; // Placeholder - replace with actual implementation
-  }
-  
+  double getBaseSalary() => 6000.0;
+
   @override
   void displayInfo() {
-    // TODO: Override to show developer-specific info
-    // Add your implementation here
+     print("\n Developer Information:");
+    super.displayInfo();
+    print("Programming Language: $programmingLanguage");
   }
 }
 
@@ -108,10 +86,18 @@ void main() {
   //    - Report generation (for managers)
   //    - Display all employee information
   
-  // TODO: Create employees
-  
-  // TODO: Demonstrate salary calculation with bonus
-  
-  // TODO: Display employee information
+  Manager manager = Manager("Alice Johnson", "M101", "Sales", 10);
+  Developer dev = Developer("Bob Smith", "D202", "IT", "Dart");
+
+  double managerSalary = manager.calculateSalary(manager.getBaseSalary(), 15000);
+  double developerSalary = dev.calculateSalary(dev.getBaseSalary(), 8000);
+  manager.displayInfo();
+  print("Total Salary (with bonus): \$${managerSalary.toStringAsFixed(2)}");
+  manager.processPayment(managerSalary);
+  print("\n" + manager.generateReport(manager.name, manager.department));
+
+  dev.displayInfo();
+  print("Total Salary (with bonus): \$${developerSalary.toStringAsFixed(2)}");
+  dev.processPayment(developerSalary);
   
 }
